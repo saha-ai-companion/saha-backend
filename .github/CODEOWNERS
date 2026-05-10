@@ -1,0 +1,17 @@
+# Backend API
+/app/api/ @saha-ai-companion/backend-team
+
+# Core backend logic
+/app/core/ @saha-ai-companion/backend-team
+
+# Database layer
+/app/db/ @saha-ai-companion/backend-team
+
+# Services
+/app/services/ @saha-ai-companion/backend-team
+
+# GitHub workflows and configs
+/.github/ @saha-ai-companion/devops-team
+
+# Documentation
+/docs/ @saha-ai-companion/pod-leads
