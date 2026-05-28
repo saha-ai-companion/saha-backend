@@ -40,11 +40,13 @@ if config.config_file_name is not None:
 # Import models — CRITICAL
 # Without this, Alembic generates empty migrations
 # ------------------------------------------------------------------ #
+
 from app.models import Base  # noqa: E402 — import after alembic setup
 
 # Override DATABASE_URL from app config (not hardcoded in alembic.ini)
 from app.core.config import settings
 config.set_main_option("sqlalchemy.url", settings.database_url)
+
 
 target_metadata = Base.metadata
 
