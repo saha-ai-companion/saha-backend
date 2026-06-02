@@ -20,7 +20,7 @@ That is it. FastAPI discovers all routes automatically.
 
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import health
+from app.api.v1.endpoints import auth, health
 
 # The single router that main.py mounts at settings.api_v1_prefix
 api_router = APIRouter()
@@ -33,9 +33,12 @@ api_router = APIRouter()
 # SC-003 — Health check (unauthenticated)
 api_router.include_router(health.router, tags=["health"])
 
-# Sprint 2 — Auth (SC-015)
-# from app.api.v1.endpoints import auth
-# api_router.include_router(auth.router, prefix="/auth", tags=["auth"])
+# Sprint 2 – Auth (SC-015)
+api_router.include_router(
+    auth.router,
+    prefix="/auth",
+    tags=["auth"],
+)
 
 # Sprint 2 — Users (SC-016)
 # from app.api.v1.endpoints import users
