@@ -20,7 +20,7 @@ That is it. FastAPI discovers all routes automatically.
 
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import auth, health
+from app.api.v1.endpoints import auth, health, users
 
 # The single router that main.py mounts at settings.api_v1_prefix
 api_router = APIRouter()
@@ -39,6 +39,8 @@ api_router.include_router(
     prefix="/auth",
     tags=["auth"],
 )
+
+api_router.include_router(users.router, prefix="/users", tags=["users"])
 
 # Sprint 2 — Users (SC-016)
 # from app.api.v1.endpoints import users
