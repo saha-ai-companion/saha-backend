@@ -90,6 +90,16 @@ class FoundationalMemory(Base, TimestampMixin):
         ),
     )
 
+    sobriety_status: Mapped[Optional[str]] = mapped_column(
+        Text,
+        nullable=True,
+        doc=(
+            "The user's current sobriety status collected during onboarding. "
+            "Example: 'I have been sober for 2 weeks.' "
+            "Used by the companion to personalize conversations. PHI."
+        ),
+    )
+
     trigger_map: Mapped[Optional[Dict[str, Any]]] = mapped_column(
         JSON,
         nullable=True,

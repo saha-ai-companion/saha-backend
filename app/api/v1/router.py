@@ -7,7 +7,7 @@ This is the file every backend intern touches when adding a new endpoint.
 Pattern is simple: create your router in app/api/v1/endpoints/your_module.py,
 then add one line here to include it.
 
-The prefix and tags pattern:
+nano app/api/v1/router.pyThe prefix and tags pattern:
     - prefix: URL segment added to all routes in that router ("/health", "/auth", etc.)
     - tags: Groups routes in the Swagger docs (/docs) — use the same tag in your router decorator
 
@@ -20,7 +20,7 @@ That is it. FastAPI discovers all routes automatically.
 
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import auth, health, users
+from app.api.v1.endpoints import auth, health, users, companion
 
 # The single router that main.py mounts at settings.api_v1_prefix
 api_router = APIRouter()
@@ -47,5 +47,7 @@ api_router.include_router(users.router, prefix="/users", tags=["users"])
 # api_router.include_router(users.router, prefix="/users", tags=["users"])
 
 # Sprint 3 — AI/Companion (SC-028)
-# from app.api.v1.endpoints import companion
-# api_router.include_router(companion.router, prefix="/companion", tags=["companion"])
+from app.api.v1.endpoints import companion
+api_router.include_router(companion.router, prefix="/companion", tags=["companion"])
+from app.api.v1.endpoints import onboarding
+api_router.include_router(onboarding.router, prefix="/onboarding", tags=["onboarding"])

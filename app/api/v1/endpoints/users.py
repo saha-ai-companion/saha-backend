@@ -82,16 +82,12 @@ async def get_my_profile(
     user = await user_repository.get_user_by_id(db, current_user_id)
 
     if not user:
-        # JWT is valid but user was deleted after token was issued.
-        # Rare but must be handled — return 404 not 500.
         log.warning(
             "profile_user_not_found",
             user_id=str(current_user_id),
         )
         raise NotFoundError("User account not found.")
 
-    # Build response from schema — never return raw ORM object
-    # hashed_password cannot appear here — it is not in UserProfileResponse
     return UserProfileResponse(
         id=user.id,
         email=user.email,
