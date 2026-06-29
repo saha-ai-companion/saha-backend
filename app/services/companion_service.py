@@ -52,6 +52,8 @@ async def build_system_prompt(db: AsyncSession, user_id: str) -> str:
             user_context += f"- Sobriety start date: {user.sobriety_start_date}\n"
         if memory and memory.their_why:
             user_context += f"- Their reason for sobriety: {memory.their_why}\n"
+        if memory and memory.sobriety_status:
+            user_context += f"- Sobriety status: {memory.sobriety_status}\n"
         if memory and memory.trigger_map:
             user_context += f"- Their triggers: {memory.trigger_map}\n"
         user_context += "\nUse this to speak to them as someone you already know.\n"
